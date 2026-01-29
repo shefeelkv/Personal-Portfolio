@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Muhammed Shefeel - Python Full Stack Developer">
+    <title>Muhammed Shefeel | Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // Initialize EmailJS with your Public Key
+            emailjs.init("upJdcGKQL0RAc3jpH");
+        })();
+    </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Shefeel<span class="dot">.</span></a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact" class="btn-primary">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="greeting">Hello, I'm</span>
+                <h1 class="name">Muhammed Shefeel</h1>
+                <h2 class="title">Python Full Stack Developer</h2>
+                <p class="bio-short">Passionate tech enthusiast and self-taught developer building the
+                    future of web.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn btn-outline">Let's Talk</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/shefeel" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/_safeeel_?igsh=Y2pqbDR4emVqMThh" target="_blank"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/shefeelkv" target="_blank" aria-label="GitHub"><i
+                            class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="glow-circle"></div>
+                <div class="tech-stack-orbit">
+                    <div class="orbit-center">
+                        <i class="fas fa-code"></i>
+                    </div>
+
+                    <!-- Inner Orbit -->
+                    <div class="orbit-ring inner">
+                        <div class="orbit-item item-1" title="Python">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="orbit-item item-2" title="Django">
+                            <i class="fas fa-server"></i>
+                        </div>
+                    </div>
+
+                    <!-- Outer Orbit -->
+                    <div class="orbit-ring outer">
+                        <div class="orbit-item item-3" title="React">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="orbit-item item-4" title="JavaScript">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="orbit-item item-5" title="Database">
+                            <i class="fas fa-database"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </header>
+
+    <section id="about" class="about">
+        <div class="container about-container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a dedicated **Python Full Stack Developer** with a passion for building robust and scalable
+                        web applications. My journey into tech is driven by curiosity and a self-taught mindset.</p>
+                    <p>Beyond code, I am an active tech community member, sharing knowledge and
+                        inspiring others. I love exploring new technologies and solving real-world problems through
+                        innovation.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="number">Fresher</span>
+                            <span class="label">Ready to Work</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">5+</span>
+                            <span class="label">Projects Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <div class="skill-bar">
+                        <div class="fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <div class="skill-bar">
+                        <div class="fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Database</h3>
+                    <div class="skill-bar">
+                        <div class="fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-react"></i>
+                    <h3>Frontend</h3>
+                    <div class="skill-bar">
+                        <div class="fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <!-- Add more skills as needed -->
+            </div>
+
+            <!-- Tools & Platforms Section -->
+            <div class="tools-section">
+                <h3 class="subsection-title">Tools & Platforms</h3>
+                <div class="tools-grid">
+                    <div class="tool-item" title="React">
+                        <i class="fab fa-react"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="tool-item" title="Python">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tool-item" title="Git">
+                        <i class="fab fa-git-alt"></i>
+                        <span>Git</span>
+                    </div>
+                    <div class="tool-item" title="PyCharm">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>PyCharm</span>
+                    </div>
+                    <div class="tool-item" title="SQL">
+                        <i class="fas fa-database"></i>
+                        <span>SQL</span>
+                    </div>
+                    <div class="tool-item" title="HTML">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML</span>
+                    </div>
+                    <div class="tool-item" title="CSS">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS</span>
+                    </div>
+                    <div class="tool-item" title="Canva">
+                        <i class="fas fa-palette"></i>
+                        <span>Canva</span>
+                    </div>
+                    <div class="tool-item" title="Figma">
+                        <i class="fab fa-figma"></i>
+                        <span>Figma</span>
+                    </div>
+                    <div class="tool-item" title="Django">
+                        <i class="fas fa-server"></i>
+                        <span>Django</span>
+                    </div>
+                    <div class="tool-item" title="VS Code">
+                        <i class="fas fa-code"></i>
+                        <span>VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="line"></div>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/fragranzia.png" alt="Fragranzia - Perfume E-commerce"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Fragranzia</h3>
+                        <p>A premium perfume e-commerce website designed to celebrate individuality with exclusive
+                            scents.</p>
+                        <div class="tags">
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>React</span>
+                        </div>
+                        <a href="#" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/coffee.jpg" alt="Coffee Shop Website"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Coffee Shop Landing Page</h3>
+                        <p>A warm and inviting website design featuring product showcases and online ordering.</p>
+                        <div class="tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/business.jpg" alt="Corporate Business Template"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Corporate Business Template</h3>
+                        <p>A clean, professional responsive template designed for digital agencies and corporations.</p>
+                        <div class="tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>React</span>
+                        </div>
+                        <a href="#" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Services</h2>
+                <div class="line"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Building responsive and high-performance websites tailored to your needs.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Backend Development</h3>
+                    <p>Creating robust APIs and server-side logic using Python and Django.</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Mentorship</h3>
+                    <p>Guiding aspiring developers to master Full Stack Development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container contact-container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="line"></div>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Let's create something amazing together.</h3>
+                    <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>shafeelshefi7777@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kerala, India</span>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Muhammed Shefeel. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/shefeel" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/shefeelkv" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/_safeeel_?igsh=Y2pqbDR4emVqMThh" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                </form>
+
+                <!-- Backend Simulation Log (Visible for Demo) -->
+                <div id="simulation-log"
+                    style="margin-top: 2rem; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px dashed var(--accent-primary); border-radius: 8px; display: none;">
+                    <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: monospace;">> Backend
+                        Simulation Log</h4>
+                    <div id="log-content" style="font-family: monospace; color: #aaa; font-size: 0.9rem;"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
