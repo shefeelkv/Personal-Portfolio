@@ -3,62 +3,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    mobileBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileBtn.classList.toggle('open');
+    if (mobileBtn && navLinks) {
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileBtn.classList.toggle('open');
+        });
 
-        // Simple animation for hamburger icon could be added here
-        const spans = mobileBtn.querySelectorAll('span');
-        if (navLinks.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-        } else {
-            spans.forEach(span => {
-                span.style.transform = 'none';
-                span.style.opacity = '1';
-            });
-        }
-    });
-
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            // Reset hamburger icon
-            const spans = mobileBtn.querySelectorAll('span');
-            spans.forEach(span => {
-                span.style.transform = 'none';
-                span.style.opacity = '1';
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileBtn.classList.remove('open');
             });
         });
-    });
+    }
 
-    // Navbar Scroll Effect
+    // Navbar Scroll Effect (Glass backdrop enhancement)
     const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
 
     // Smooth Scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href.startsWith('#cv-modal')) return;
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const navbarHeight = navbar ? navbar.clientHeight : 80;
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Advanced Reveal on Scroll Animation
+    // Scroll Spy for active navigation highlighting
+    const sections = document.querySelectorAll('section, header');
+    const navItems = document.querySelectorAll('.nav-links a:not(.cv-trigger)');
+
+    function scrollSpy() {
+        let currentSectionId = 'home';
+        const navbarHeight = navbar ? navbar.clientHeight : 80;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - navbarHeight - 20;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${currentSectionId}`) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', scrollSpy);
+    scrollSpy(); // Initial run
+
+    // Intersection Observer for Reveal on Scroll Animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -68,14 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-
-                // Staggered animation for grids
+                
+                // Staggered animation for grid children
                 if (entry.target.classList.contains('stagger-grid')) {
                     const items = entry.target.children;
                     Array.from(items).forEach((item, index) => {
                         setTimeout(() => {
                             item.classList.add('visible');
-                        }, index * 100); // 100ms delay between items
+                        }, index * 80); // Stagger interval
                     });
                     observer.unobserve(entry.target);
                 } else {
@@ -86,14 +103,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Elements to reveal
-    const revealElements = document.querySelectorAll('.hero-content, .section-header, .about-text, .service-card, .contact-wrapper');
+    const revealElements = document.querySelectorAll(
+        '.hero-content, .section-header, .about-text, .stat-item, .service-card, .contact-wrapper, .timeline-item, .featured-project-card, .cv-card'
+    );
+    
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);
     });
 
     // Grids to stagger
-    const staggerGrids = document.querySelectorAll('.skills-grid, .projects-grid, .tools-grid, .services-grid');
+    const staggerGrids = document.querySelectorAll('.skills-category-grid, .projects-grid, .services-grid');
     staggerGrids.forEach(grid => {
         grid.classList.add('stagger-grid');
         observer.observe(grid);
@@ -104,124 +124,150 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add dynamic styles for animations
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .reveal-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-        
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stagger-grid .reveal-item {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .stagger-grid .reveal-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Contact Form Handling (EmailJS)
+    // Contact Form Handling (EmailJS with Client-Side Validation)
     const contactForm = document.querySelector('.contact-form');
 
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Get values
+            // Form Fields
             const nameInput = this.querySelector('input[type="text"]');
             const emailInput = this.querySelector('input[type="email"]');
+            const projectSelect = this.querySelector('select');
             const messageInput = this.querySelector('textarea');
             const submitBtn = this.querySelector('button[type="submit"]');
 
-            const name = nameInput.value;
-            const email = emailInput.value;
-            const message = messageInput.value;
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const projectType = projectSelect.value;
+            const message = messageInput.value.trim();
 
-            // Visual feedback - Loading state
+            // Client-Side Validation
+            if (name.length < 2) {
+                alert('Please enter a valid name (at least 2 characters).');
+                nameInput.focus();
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                emailInput.focus();
+                return;
+            }
+
+            if (!projectType) {
+                alert('Please select a project type.');
+                projectSelect.focus();
+                return;
+            }
+
+            if (message.length < 10) {
+                alert('Please tell me a bit more about your project (at least 10 characters).');
+                messageInput.focus();
+                return;
+            }
+
+            // Disable submit button and show loading state
             const originalBtnText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.textContent = 'Sending Message...';
             submitBtn.disabled = true;
 
-            // Prepare template parameters (matching your EmailJS template variables)
+            // EmailJS Parameters
             const templateParams = {
                 name: name,
                 email: email,
+                project_type: projectType,
                 message: message
             };
 
-            // Send via EmailJS
+            // Send Email using EmailJS
             emailjs.send('Shefeel_123', 'template_a5idkni', templateParams)
-                .then(function () {
-                    // Success - Real Email Sent
-
-                    // Show in UI Log for User Visibility (Confirmation)
-                    const logContainer = document.getElementById('simulation-log');
-                    const logContent = document.getElementById('log-content');
-
-                    if (logContainer && logContent) {
-                        logContainer.style.display = 'block';
-                        const timestamp = new Date().toLocaleTimeString();
-                        const logEntry = `
-                            <div style="margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                                <span style="color: #4ade80;">[${timestamp}] EMAIL SENT SUCCESSFULLY:</span><br>
-                                <strong>To:</strong> shafeelshefi7777@gmail.com<br>
-                                <strong>From:</strong> ${name} (${email})<br>
-                                <strong>Message:</strong> "${message}"
-                            </div>
-                        `;
-                        logContent.innerHTML = logEntry + logContent.innerHTML;
-                    }
-
-                    alert(`Success! The email has been sent to shafeelshefi7777@gmail.com.\n\nThank you, ${name}!`);
+                .then(() => {
+                    // Success callback
+                    showSimulationLog(name, email, projectType, message, true);
+                    alert(`Thank you, ${name}! Your message has been sent successfully. I will get back to you shortly.`);
                     contactForm.reset();
                     submitBtn.textContent = originalBtnText;
                     submitBtn.disabled = false;
-                }, function (error) {
-                    // Fallback Simulation for Portfolio Demo
-                    console.log('EmailJS Error:', error);
-
-                    // Artificial delay to simulate network request
+                })
+                .catch((error) => {
+                    // Failure Callback (Simulation fallback for testing/demo)
+                    console.warn('EmailJS delivery failed, fallback to local simulator:', error);
+                    
+                    // Simulate network delay
                     setTimeout(() => {
-                        console.log('--- BACKEND SIMULATION ---');
-                        console.log('Message Received from:', name);
-                        console.log('Email:', email);
-                        console.log('Content:', message);
-                        console.log('--------------------------');
-
-                        // Show in UI Log for User Visibility
-                        const logContainer = document.getElementById('simulation-log');
-                        const logContent = document.getElementById('log-content');
-
-                        if (logContainer && logContent) {
-                            logContainer.style.display = 'block';
-                            const timestamp = new Date().toLocaleTimeString();
-                            const logEntry = `
-                                <div style="margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                                    <span style="color: #4ade80;">[${timestamp}] MESSAGE RECEIVED:</span><br>
-                                    <strong>From:</strong> ${name} (${email})<br>
-                                    <strong>Message:</strong> "${message}"
-                                </div>
-                            `;
-                            logContent.innerHTML = logEntry + logContent.innerHTML;
-                        }
-
-                        alert(`(Simulation Mode) Message sent! \n\nI've added a visible "Backend Log" below the form so you can see your message arriving.`);
-
+                        showSimulationLog(name, email, projectType, message, false);
+                        alert(`Message received! (Simulator Mode)\n\nThank you, ${name}. I've logged the submission in the debug console below the form.`);
                         contactForm.reset();
                         submitBtn.textContent = originalBtnText;
                         submitBtn.disabled = false;
-                    }, 1500);
+                    }, 1200);
                 });
+        });
+    }
+
+    // Helper to display submission log in the UI for validation
+    function showSimulationLog(name, email, projectType, message, isReal) {
+        const logContainer = document.getElementById('simulation-log');
+        const logContent = document.getElementById('log-content');
+
+        if (logContainer && logContent) {
+            logContainer.style.display = 'block';
+            const timestamp = new Date().toLocaleTimeString();
+            const statusLabel = isReal ? 'DELIVERED (EmailJS)' : 'SIMULATED (Fallback)';
+            const statusColor = isReal ? '#4ade80' : '#fbbf24';
+
+            const logEntry = `
+                <div style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                    <span style="color: ${statusColor}; font-weight: bold;">[${timestamp}] CONTACT INQUIRY - ${statusLabel}:</span><br>
+                    <strong>Name:</strong> ${name}<br>
+                    <strong>Email:</strong> ${email}<br>
+                    <strong>Project Type:</strong> ${projectType}<br>
+                    <strong>Message:</strong> "${message}"
+                </div>
+            `;
+            logContent.innerHTML = logEntry + logContent.innerHTML;
+            
+            // Scroll to the simulation log so the user can verify
+            logContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+    }
+
+    // CV Modal functionality
+    const cvModal = document.getElementById('cv-modal');
+    const cvTriggers = document.querySelectorAll('.cv-trigger');
+    const cvCloseBtn = document.querySelector('.cv-modal-close');
+
+    if (cvModal && cvTriggers.length > 0) {
+        cvTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                cvModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Lock background scrolling
+            });
+        });
+    }
+
+    if (cvCloseBtn && cvModal) {
+        cvCloseBtn.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore background scrolling
+        });
+
+        cvModal.addEventListener('click', (e) => {
+            if (e.target === cvModal) {
+                cvModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cvModal.classList.contains('active')) {
+                cvModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
     }
 });

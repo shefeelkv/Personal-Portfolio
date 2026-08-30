@@ -4,15 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Muhammed Shefeel - Python Full Stack Developer">
-    <title>Muhammed Shefeel | Full Stack Developer</title>
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Muhammed Shefeel | Python Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Muhammed Shefeel, a Python Full Stack Developer specializing in Django, React, REST APIs and modern web applications.">
+    <meta name="keywords" content="Muhammed Shefeel, Python Developer, Django Developer, Full Stack Developer, React Developer, Freelance Developer, Web Developer, Dubai Web Developer, India Web Developer">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Muhammed Shefeel | Python Full Stack Developer">
+    <meta property="og:description" content="Portfolio of Muhammed Shefeel, a Python Full Stack Developer specializing in Django, React, REST APIs and modern web applications.">
+    <meta property="og:url" content="http://localhost:8081">
+    
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -24,6 +34,7 @@
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">Shefeel<span class="dot">.</span></a>
@@ -33,36 +44,40 @@
                 <span></span>
             </button>
             <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#contact" class="btn-primary">Contact Me</a></li>
+                <li><a href="#" class="cv-trigger">CV</a></li>
+                <li><a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Contact</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="hero" id="home">
         <div class="container hero-container">
             <div class="hero-content">
-                <span class="greeting">Hello, I'm</span>
-                <h1 class="name">Muhammed Shefeel</h1>
-                <h2 class="title">Python Full Stack Developer</h2>
-                <p class="bio-short">Passionate tech enthusiast and self-taught developer building the
-                    future of web.</p>
+                <span class="hero-label">Python Full Stack Developer</span>
+                <span class="name-intro">Hello, I'm <span>Muhammed Shefeel</span></span>
+                <h1 class="name">Building Modern Digital Experiences</h1>
+                <h2 class="title">with Python & Full Stack Development</h2>
+                <p class="bio-short">Python Full Stack Developer specializing in Django, React, REST APIs, and modern web applications. I build responsive, scalable, and user-focused web systems for businesses, startups, and digital products.</p>
                 <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">View Work</a>
-                    <a href="#contact" class="btn btn-outline">Let's Talk</a>
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Hire Me</a>
+                    <a href="cv/Muhammed-Shefeel-CV.pdf" download class="btn btn-outline cv-btn"><i class="fas fa-download"></i> Download CV</a>
                 </div>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/shefeel" target="_blank" aria-label="LinkedIn"><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.instagram.com/_safeeel_?igsh=Y2pqbDR4emVqMThh" target="_blank"
-                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/shefeelkv" target="_blank" aria-label="GitHub"><i
-                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/shefeel" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/shefeelkv" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/_safeeel_?igsh=Y2pqbDR4emVqMThh" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:shafeelshefi7777@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
+            
             <div class="hero-visual">
                 <div class="glow-circle"></div>
                 <div class="tech-stack-orbit">
@@ -70,7 +85,7 @@
                         <i class="fas fa-code"></i>
                     </div>
 
-                    <!-- Inner Orbit -->
+                    <!-- Inner Orbit Ring -->
                     <div class="orbit-ring inner">
                         <div class="orbit-item item-1" title="Python">
                             <i class="fab fa-python"></i>
@@ -80,7 +95,7 @@
                         </div>
                     </div>
 
-                    <!-- Outer Orbit -->
+                    <!-- Outer Orbit Ring -->
                     <div class="orbit-ring outer">
                         <div class="orbit-item item-3" title="React">
                             <i class="fab fa-react"></i>
@@ -88,256 +103,515 @@
                         <div class="orbit-item item-4" title="JavaScript">
                             <i class="fab fa-js"></i>
                         </div>
-                        <div class="orbit-item item-5" title="Database">
+                        <div class="orbit-item item-5" title="MySQL / SQL">
                             <i class="fas fa-database"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <a href="#about" class="scroll-down">
+        <a href="#about" class="scroll-down" aria-label="Scroll down to about section">
             <i class="fas fa-chevron-down"></i>
         </a>
     </header>
 
+    <!-- About Section -->
     <section id="about" class="about">
-        <div class="container about-container">
+        <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About Me</h2>
                 <div class="line"></div>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I am a dedicated **Python Full Stack Developer** with a passion for building robust and scalable
-                        web applications. My journey into tech is driven by curiosity and a self-taught mindset.</p>
-                    <p>Beyond code, I am an active tech community member, sharing knowledge and
-                        inspiring others. I love exploring new technologies and solving real-world problems through
-                        innovation.</p>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="number">Fresher</span>
-                            <span class="label">Ready to Work</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="number">5+</span>
-                            <span class="label">Projects Completed</span>
-                        </div>
+                    <p>I am a BCA Graduate and an experienced Python Full Stack Developer with 6 months of corporate internship training, actively working on freelance web development projects and teaching Python programming. I specialize in designing and delivering custom web applications, combining powerful Django/Python backends with responsive React/JavaScript frontend layouts.</p>
+                    <p>My work centers on writing clean, structured, and maintainable code, translating client goals into technical systems, and deploying speed-optimized websites. I am focused on creating scalable web solutions for startups, small businesses, and international clients seeking to establish a premium online presence.</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="number">6+ Mos</span>
+                        <span class="label">Internship Training</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number">10+</span>
+                        <span class="label">Projects Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number">5+</span>
+                        <span class="label">Core Technologies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number">100%</span>
+                        <span class="label">Commitment & Delivery</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Skills & Expertise</h2>
                 <div class="line"></div>
             </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fab fa-python"></i>
-                    <h3>Python</h3>
-                    <div class="skill-bar">
-                        <div class="fill" style="width: 95%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-js"></i>
-                    <h3>JavaScript</h3>
-                    <div class="skill-bar">
-                        <div class="fill" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Database</h3>
-                    <div class="skill-bar">
-                        <div class="fill" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-react"></i>
-                    <h3>Frontend</h3>
-                    <div class="skill-bar">
-                        <div class="fill" style="width: 80%"></div>
-                    </div>
-                </div>
-                <!-- Add more skills as needed -->
-            </div>
-
-            <!-- Tools & Platforms Section -->
-            <div class="tools-section">
-                <h3 class="subsection-title">Tools & Platforms</h3>
-                <div class="tools-grid">
-                    <div class="tool-item" title="React">
-                        <i class="fab fa-react"></i>
-                        <span>React</span>
-                    </div>
-                    <div class="tool-item" title="Python">
-                        <i class="fab fa-python"></i>
-                        <span>Python</span>
-                    </div>
-                    <div class="tool-item" title="Git">
-                        <i class="fab fa-git-alt"></i>
-                        <span>Git</span>
-                    </div>
-                    <div class="tool-item" title="PyCharm">
-                        <i class="fas fa-laptop-code"></i>
-                        <span>PyCharm</span>
-                    </div>
-                    <div class="tool-item" title="SQL">
-                        <i class="fas fa-database"></i>
-                        <span>SQL</span>
-                    </div>
-                    <div class="tool-item" title="HTML">
-                        <i class="fab fa-html5"></i>
-                        <span>HTML</span>
-                    </div>
-                    <div class="tool-item" title="CSS">
-                        <i class="fab fa-css3-alt"></i>
-                        <span>CSS</span>
-                    </div>
-                    <div class="tool-item" title="Canva">
-                        <i class="fas fa-palette"></i>
-                        <span>Canva</span>
-                    </div>
-                    <div class="tool-item" title="Figma">
-                        <i class="fab fa-figma"></i>
-                        <span>Figma</span>
-                    </div>
-                    <div class="tool-item" title="Django">
+            <div class="skills-category-grid">
+                <!-- Backend -->
+                <div class="skill-category-card">
+                    <div class="category-header">
                         <i class="fas fa-server"></i>
-                        <span>Django</span>
+                        <h3>Backend</h3>
                     </div>
-                    <div class="tool-item" title="VS Code">
-                        <i class="fas fa-code"></i>
-                        <span>VS Code</span>
+                    <ul class="skill-list">
+                        <li>
+                            <i class="fab fa-python"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-desc">Object-oriented programming, data structures, and scripting logic.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-gears"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">Django</span>
+                                <span class="skill-desc">Scalable server-side architectures, admin portals, and MVC patterns.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-cloud"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">REST APIs</span>
+                                <span class="skill-desc">Building secure endpoint architectures and third-party integrations.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Frontend -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Frontend</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li>
+                            <i class="fab fa-react"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">React</span>
+                                <span class="skill-desc">Dynamic state-driven web applications and reusable components.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-js"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-desc">Event-driven client-side interactivity and asynchronous integrations.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-html5"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">HTML5 & CSS3</span>
+                                <span class="skill-desc">Semantic page structures, responsive layouts, and animations.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-bootstrap"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">Bootstrap</span>
+                                <span class="skill-desc">Mobile-first grid systems and modern component design libraries.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Database -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Database</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li>
+                            <i class="fas fa-database"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">MySQL</span>
+                                <span class="skill-desc">Relational database schemas, tables, relationships, and queries.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-table"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-desc">Database administration, querying, optimizations, and sorting operations.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Tools -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>Tools & Workflow</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li>
+                            <i class="fab fa-git-alt"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">Git</span>
+                                <span class="skill-desc">Branching strategies, version history management, and merging.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-github"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">GitHub</span>
+                                <span class="skill-desc">Collaborative development repositories and workflow management.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-code"></i>
+                            <div class="skill-detail">
+                                <span class="skill-name">VS Code / PyCharm</span>
+                                <span class="skill-desc">Efficient development IDE configurations and extensions.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Work History</h2>
+                <div class="line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Current</div>
+                    <div class="timeline-content">
+                        <h3>Freelance Full Stack Developer</h3>
+                        <span class="company">Freelance Development Services</span>
+                        <ul class="timeline-bullets">
+                            <li>Developing websites and web applications for clients, tailoring solutions to their specific business goals.</li>
+                            <li>Gathering and translating client requirements into functional backend services and frontend interfaces.</li>
+                            <li>Designing layouts and ensuring cross-browser styles using modern HTML, CSS, and JavaScript.</li>
+                            <li>Managing projects end-to-end to deliver responsive, fully functional business websites on schedule.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">6 Months</div>
+                    <div class="timeline-content">
+                        <h3>Python Full Stack Developer Intern</h3>
+                        <span class="company">Corporate Internship Program</span>
+                        <ul class="timeline-bullets">
+                            <li>Collaborated in web application architecture development using Python and the Django framework.</li>
+                            <li>Assisted in frontend UI development, styling web layouts, and adding client-side interactivity.</li>
+                            <li>Integrated backend relational databases and assisted in building and maintaining REST API integrations.</li>
+                            <li>Participated in debugging, troubleshooting, and code optimization tasks in a team environment.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1 Month</div>
+                    <div class="timeline-content">
+                        <h3>Python Programming Instructor</h3>
+                        <span class="company">Programming Mentorship Program</span>
+                        <ul class="timeline-bullets">
+                            <li>Taught basic Python syntax, data structures, control flows, and core programming theories to beginners.</li>
+                            <li>Guided students through computer programming concepts and initial practical exercises.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
+                <h2 class="section-title">Selected Projects</h2>
                 <div class="line"></div>
             </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/fragranzia.png" alt="Fragranzia - Perfume E-commerce"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+
+            <!-- Standalone Featured Project -->
+            <div class="featured-project-container">
+                <span class="subsection-tag">Featured Project</span>
+                <div class="featured-project-card">
+                    <div class="featured-image-container">
+                        <span class="featured-badge">Featured Solution</span>
+                        <img src="images/railway.jpg" alt="Railway Food Delivery System Dashboard Preview">
                     </div>
-                    <div class="project-info">
-                        <h3>Fragranzia</h3>
-                        <p>A premium perfume e-commerce website designed to celebrate individuality with exclusive
-                            scents.</p>
+                    <div class="featured-info">
+                        <h3>Railway Food Delivery System</h3>
+                        <p>A full-stack railway food delivery platform that allows passengers to discover restaurants based on their train journey and station, browse food items, place orders, make payments, and track deliveries. It solves the challenge of finding high-quality dining options during long train journeys by integrating restaurant menus with passenger itineraries.</p>
+                        
+                        <div class="featured-meta">
+                            <div><strong>Role:</strong> <span>Full Stack Developer</span></div>
+                            <div><strong>Key Features:</strong> <span>Route tracking, itinerary meal selection, dynamic menu search, order management.</span></div>
+                        </div>
+
                         <div class="tags">
                             <span>Python</span>
                             <span>Django</span>
                             <span>React</span>
+                            <span>JavaScript</span>
+                            <span>MySQL</span>
+                            <span>REST API</span>
+                            <span>Bootstrap</span>
                         </div>
-                        <a href="#" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        
+                        <div class="project-actions">
+                            <a href="https://github.com/shefeelkv" target="_blank" class="btn btn-primary">View Project</a>
+                            <a href="https://github.com/shefeelkv" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> Repository</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Project 2 -->
+            </div>
+
+            <!-- Project Grid -->
+            <span class="subsection-tag" style="margin-top: 3rem;">Other Projects</span>
+            <div class="projects-grid">
+                <!-- Project 1: ELEWON -->
+                <div class="project-card">
+                    <span class="project-info-badge">UAE Client Project</span>
+                    <div class="project-image">
+                        <img src="images/elewon.png" alt="ELEWON Website Interface Showcase">
+                    </div>
+                    <div class="project-info">
+                        <h3>ELEWON</h3>
+                        <p>Premium digital presence built for a Dubai-based digital marketing, branding, and media/events agency. It is designed to showcase the agency's creative portfolio, branding campaigns, and marketing services to business clients across the UAE.</p>
+                        <div class="project-details">
+                            <strong>Role:</strong> Frontend Developer<br>
+                            <strong>Focus:</strong> Branding Presentation, Responsive Layouts, Client-Focused UX, Modern UI animations.
+                        </div>
+                        <div class="tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>Bootstrap</span>
+                            <span>JavaScript</span>
+                            <span>React</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://elewon.net/" target="_blank" class="btn-link">Visit Website <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Fragranzia -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/coffee.jpg" alt="Coffee Shop Website"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                        <img src="images/fragranzia.png" alt="Fragranzia E-commerce App Home Page">
+                    </div>
+                    <div class="project-info">
+                        <h3>Fragranzia</h3>
+                        <p>A premium fragrance e-commerce web application that enables users to browse exclusive perfumes, manage a dynamic shopping cart, and place orders. It solves the complexity of product categorization and order collection for boutique retailers.</p>
+                        <div class="project-details">
+                            <strong>Role:</strong> Full Stack Developer<br>
+                            <strong>Key Features:</strong> Product filtering, database storage, dynamic state-based cart management.
+                        </div>
+                        <div class="tags">
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>React</span>
+                            <span>JavaScript</span>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/shefeelkv" target="_blank" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Corporate Business Website -->
+                <div class="project-card">
+                    <span class="project-info-badge">Client Project</span>
+                    <div class="project-image">
+                        <img src="images/business.jpg" alt="Corporate Business Theme Template Preview">
+                    </div>
+                    <div class="project-info">
+                        <h3>Corporate Business Website</h3>
+                        <p>A modular, highly responsive website template crafted to help digital agencies and consulting firms showcase services, client testimonials, and portfolios.</p>
+                        <div class="project-details">
+                            <strong>Role:</strong> Freelance Developer<br>
+                            <strong>Key Features:</strong> Modular grid structure, interactive contact interface, contact form layers.
+                        </div>
+                        <div class="tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>React</span>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/shefeelkv" target="_blank" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Coffee Shop Landing Page -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/coffee.jpg" alt="Coffee Shop Responsive Landing Page Design">
                     </div>
                     <div class="project-info">
                         <h3>Coffee Shop Landing Page</h3>
-                        <p>A warm and inviting website design featuring product showcases and online ordering.</p>
+                        <p>A warm, responsive promotional website designed to showcase premium coffee selections, coffee house hours, and locations. It provides local cafes with an elegant web presence to drive in-store foot traffic.</p>
+                        <div class="project-details">
+                            <strong>Role:</strong> Frontend Developer<br>
+                            <strong>Key Features:</strong> High-performance CSS structures, responsive columns, dynamic menu layout.
+                        </div>
                         <div class="tags">
                             <span>HTML5</span>
                             <span>CSS3</span>
                             <span>JavaScript</span>
                         </div>
-                        <a href="#" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/business.jpg" alt="Corporate Business Template"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-                    </div>
-                    <div class="project-info">
-                        <h3>Corporate Business Template</h3>
-                        <p>A clean, professional responsive template designed for digital agencies and corporations.</p>
-                        <div class="tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>React</span>
+                        <div class="project-links">
+                            <a href="https://github.com/shefeelkv" target="_blank" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
                         </div>
-                        <a href="#" class="btn-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">My Services</h2>
+                <h2 class="section-title">How I Can Help Your Business</h2>
                 <div class="line"></div>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Web Development</h3>
-                    <p>Building responsive and high-performance websites tailored to your needs.</p>
+                    <span class="service-num">01</span>
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Full Stack Development</h3>
+                    <p>End-to-end web applications combining robust server architectures with interactive and state-driven frontend layers.</p>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Backend Development</h3>
-                    <p>Creating robust APIs and server-side logic using Python and Django.</p>
+                    <span class="service-num">02</span>
+                    <i class="fab fa-python"></i>
+                    <h3>Python/Django Engineering</h3>
+                    <p>Building secure, scalable, and database-integrated backend architectures, REST API endpoints, and admin panels.</p>
                 </div>
-
                 <div class="service-card">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>Mentorship</h3>
-                    <p>Guiding aspiring developers to master Full Stack Development.</p>
+                    <span class="service-num">03</span>
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Frontend Development</h3>
+                    <p>Translating wireframes and designs into pixel-perfect, dynamic interactive templates using React and JavaScript.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">04</span>
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Business Websites</h3>
+                    <p>Clean, high-performance company websites designed to establish authority and convert visitors into clients.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">05</span>
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Responsive UX Layouts</h3>
+                    <p>Creating lightweight mobile-first interfaces that scale fluidly across phone, tablet, laptop, and desktop screens.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">06</span>
+                    <i class="fas fa-tools"></i>
+                    <h3>Site Audits & Maintenance</h3>
+                    <p>Performing routine performance optimization, bug testing, asset cleanup, and structural improvements.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Freelance CTA Section -->
+    <section class="freelance-cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Need a Custom Website for Your Business?</h2>
+                <p>I collaborate with business owners, startup founders, and digital agencies to turn their ideas into modern, speed-optimized, and premium web products.</p>
+                <a href="#contact" class="btn btn-primary">Start a Project →</a>
+                <div class="trust-points">
+                    <span class="trust-point"><i class="fas fa-check"></i> Responsive Design</span>
+                    <span class="trust-point"><i class="fas fa-check"></i> Clean Code</span>
+                    <span class="trust-point"><i class="fas fa-check"></i> Premium Visuals</span>
+                    <span class="trust-point"><i class="fas fa-check"></i> Business Value Focus</span>
+                    <span class="trust-point"><i class="fas fa-check"></i> Clear Communication</span>
+                    <span class="trust-point"><i class="fas fa-check"></i> On-Time Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section class="cv-section">
+        <div class="container">
+            <div class="cv-card">
+                <div class="cv-icon"><i class="fas fa-file-contract"></i></div>
+                <h2>Let's Build Something Great</h2>
+                <p>Download my updated resume to review my skills, projects, and credentials, or view it directly in the web browser.</p>
+                <div class="cv-btns">
+                    <a href="#" class="btn btn-primary cv-trigger">View CV</a>
+                    <a href="cv/Muhammed-Shefeel-CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section id="contact" class="contact">
-        <div class="container contact-container">
+        <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
+                <h2 class="section-title">Let's Work Together</h2>
                 <div class="line"></div>
             </div>
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <h3>Let's create something amazing together.</h3>
-                    <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+                    <h3>Have a project, business idea, or freelance requirement?</h3>
+                    <p>Let's discuss it! Reach out via the form, or get in touch directly through email or social media channels.</p>
+                    
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <span>shafeelshefi7777@gmail.com</span>
+                        <div>
+                            <span style="display:block; font-size:0.8rem; color:var(--text-secondary);">Direct Email</span>
+                            <a href="mailto:shafeelshefi7777@gmail.com" class="contact-email-link">shafeelshefi7777@gmail.com</a>
+                        </div>
                     </div>
+                    
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Kerala, India</span>
+                        <div>
+                            <span style="display:block; font-size:0.8rem; color:var(--text-secondary);">Location</span>
+                            <span>Kerala, India (Open to Remote / UAE timezone alignment)</span>
+                        </div>
                     </div>
                 </div>
+
                 <form class="contact-form">
                     <div class="form-group">
                         <input type="text" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" placeholder="Your Email Address" required>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <select required>
+                            <option value="" disabled selected>Select Project Type</option>
+                            <option value="Full Stack Application">Full Stack Web Application</option>
+                            <option value="Business Website">Business Website</option>
+                            <option value="Frontend Development">Frontend Development / Styling</option>
+                            <option value="Consulting / Freelance Support">Consulting & Freelance Support</option>
+                            <option value="Other Project Inquiry">Other Project Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Tell me about your project, timeline, and goals..." rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
@@ -345,28 +619,55 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Muhammed Shefeel. All rights reserved.</p>
-            <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/shefeel" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/shefeelkv" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/_safeeel_?igsh=Y2pqbDR4emVqMThh" target="_blank"><i
-                        class="fab fa-instagram"></i></a>
-                </form>
+            <h3 class="footer-logo">Shefeel<span class="dot">.</span></h3>
+            <p class="footer-subtitle">Python Full Stack Developer</p>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
 
-                <!-- Backend Simulation Log (Visible for Demo) -->
-                <div id="simulation-log"
-                    style="margin-top: 2rem; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px dashed var(--accent-primary); border-radius: 8px; display: none;">
-                    <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: monospace;">> Backend
-                        Simulation Log</h4>
-                    <div id="log-content" style="font-family: monospace; color: #aaa; font-size: 0.9rem;"></div>
-                </div>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/shefeel" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/shefeelkv" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/_safeeel_?igsh=Y2pqbDR4emVqMThh" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:shafeelshefi7777@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p class="copyright">&copy; 2026 Muhammed Shefeel. All rights reserved.</p>
+
+            <!-- Simulation Log (Visible for Demo verification) -->
+            <div id="simulation-log" style="display: none;">
+                <h4>&gt; Contact Submission Log</h4>
+                <div id="log-content"></div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- CV Modal Viewer -->
+    <div id="cv-modal" class="cv-modal">
+        <div class="cv-modal-content">
+            <button class="cv-modal-close" aria-label="Close CV modal">&times;</button>
+            <h3 class="cv-modal-title">Muhammed Shefeel - Professional CV</h3>
+            <div class="cv-modal-body">
+                <iframe src="cv/Muhammed-Shefeel-CV.pdf" title="Muhammed Shefeel Resume" width="100%" height="100%" class="cv-iframe"></iframe>
+            </div>
+            <div class="cv-modal-footer">
+                <a href="cv/Muhammed-Shefeel-CV.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Open in New Tab</a>
+                <a href="cv/Muhammed-Shefeel-CV.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> Download PDF</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=2"></script>
 </body>
 
 </html>
