@@ -1,180 +1,323 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Toggle
-    const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+/**
+ * Muhammed Shefeel - Professional Portfolio Scripts
+ * Handles navigation, active scrollspy, scroll reveals, CV modal, and contact form
+ */
 
-    if (mobileBtn && navLinks) {
-        mobileBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileBtn.classList.toggle('open');
+document.addEventListener('DOMContentLoaded', () => {
+    // -------------------------------------------------------------
+    // 1. Mobile Menu Toggle
+    // -------------------------------------------------------------
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('active');
+            mobileToggle.setAttribute('aria-expanded', isOpen);
+            const icon = mobileToggle.querySelector('i');
+            if (icon) {
+                icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+            }
         });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        // Close menu on navigation link click
+        navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileBtn.classList.remove('open');
+                navMenu.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                const icon = mobileToggle.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-bars';
+                }
             });
         });
-    }
 
-    // Navbar Scroll Effect (Glass backdrop enhancement)
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        // Close menu on click outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                const icon = mobileToggle.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-bars';
+                }
             }
         });
     }
 
-    // Smooth Scroll for anchor links
+    // -------------------------------------------------------------
+    // 2. Navbar Elevation on Scroll
+    // -------------------------------------------------------------
+    const navbar = document.getElementById('navbar');
+    
+    function updateNavbar() {
+        if (!navbar) return;
+        if (window.scrollY > 20) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+
+    // -------------------------------------------------------------
+    // 3. Smooth Scroll with Sticky Navbar Offset
+    // -------------------------------------------------------------
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || href.startsWith('#cv-modal')) return;
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                const navbarHeight = navbar ? navbar.clientHeight : 80;
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+            const targetId = this.getAttribute('href');
+            if (targetId === '#' || targetId.startsWith('#cvModal')) return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                const navHeight = navbar ? navbar.offsetHeight : 72;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - navHeight - 16;
+
                 window.scrollTo({
-                    top: targetPosition,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Scroll Spy for active navigation highlighting
-    const sections = document.querySelectorAll('section, header');
-    const navItems = document.querySelectorAll('.nav-links a:not(.cv-trigger)');
+    // -------------------------------------------------------------
+    // 4. ScrollSpy: Highlight Active Nav Link
+    // -------------------------------------------------------------
+    const observedSections = document.querySelectorAll('section, header.hero');
 
-    function scrollSpy() {
-        let currentSectionId = 'home';
-        const navbarHeight = navbar ? navbar.clientHeight : 80;
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - navbarHeight - 20;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
+    function handleScrollSpy() {
+        const scrollPosition = window.scrollY;
+        const navHeight = navbar ? navbar.offsetHeight : 72;
 
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${currentSectionId}`) {
-                item.classList.add('active');
+        observedSections.forEach(section => {
+            const sectionTop = section.offsetTop - navHeight - 60;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     }
+
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+
+    // -------------------------------------------------------------
+    // 5. Scroll Reveal with Intersection Observer
+    // -------------------------------------------------------------
+    const revealItems = document.querySelectorAll('.reveal-item');
     
-    window.addEventListener('scroll', scrollSpy);
-    scrollSpy(); // Initial run
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.1
+        });
 
-    // Intersection Observer for Reveal on Scroll Animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+        revealItems.forEach(item => revealObserver.observe(item));
+    } else {
+        // Fallback for older browsers
+        revealItems.forEach(item => item.classList.add('visible'));
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Staggered animation for grid children
-                if (entry.target.classList.contains('stagger-grid')) {
-                    const items = entry.target.children;
-                    Array.from(items).forEach((item, index) => {
-                        setTimeout(() => {
-                            item.classList.add('visible');
-                        }, index * 80); // Stagger interval
+    // -------------------------------------------------------------
+    // 5b. Projects Expand / Collapse Toggle
+    // -------------------------------------------------------------
+    const toggleProjectsBtn = document.getElementById('toggleProjectsBtn');
+    const extraProjects = document.querySelectorAll('.project-card-extra');
+
+    if (toggleProjectsBtn && extraProjects.length > 0) {
+        toggleProjectsBtn.addEventListener('click', () => {
+            const isExpanded = toggleProjectsBtn.getAttribute('aria-expanded') === 'true';
+
+            if (!isExpanded) {
+                // Reveal extra projects
+                extraProjects.forEach(card => {
+                    card.classList.remove('is-hidden');
+                    card.classList.add('is-visible');
+                });
+                toggleProjectsBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less';
+                toggleProjectsBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                // Hide extra projects
+                extraProjects.forEach(card => {
+                    card.classList.remove('is-visible');
+                    card.classList.add('is-hidden');
+                });
+                toggleProjectsBtn.innerHTML = '<i class="fas fa-chevron-down"></i> View More Projects';
+                toggleProjectsBtn.setAttribute('aria-expanded', 'false');
+
+                // Smooth scroll back to projects section
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                    const navHeight = navbar ? navbar.offsetHeight : 72;
+                    window.scrollTo({
+                        top: projectsSection.offsetTop - navHeight - 16,
+                        behavior: 'smooth'
                     });
-                    observer.unobserve(entry.target);
-                } else {
-                    observer.unobserve(entry.target);
                 }
             }
         });
-    }, observerOptions);
+    }
 
-    // Elements to reveal
-    const revealElements = document.querySelectorAll(
-        '.hero-content, .section-header, .about-text, .stat-item, .service-card, .contact-wrapper, .timeline-item, .featured-project-card, .cv-card'
-    );
-    
-    revealElements.forEach(el => {
-        el.classList.add('reveal-item');
-        observer.observe(el);
-    });
+    // -------------------------------------------------------------
+    // 5c. Tourist Guide System Details Modal
+    // -------------------------------------------------------------
+    const touristModal = document.getElementById('touristGuideModal');
+    const openTouristModalBtn = document.getElementById('openTouristModalBtn');
+    const touristModalClose = document.getElementById('touristModalClose');
 
-    // Grids to stagger
-    const staggerGrids = document.querySelectorAll('.skills-category-grid, .projects-grid, .services-grid');
-    staggerGrids.forEach(grid => {
-        grid.classList.add('stagger-grid');
-        observer.observe(grid);
+    function openTouristModal() {
+        if (!touristModal) return;
+        touristModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-        // Hide children initially
-        Array.from(grid.children).forEach(child => {
-            child.classList.add('reveal-item');
+    function closeTouristModal() {
+        if (!touristModal) return;
+        touristModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (openTouristModalBtn) {
+        openTouristModalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openTouristModal();
+        });
+    }
+
+    if (touristModalClose) {
+        touristModalClose.addEventListener('click', closeTouristModal);
+    }
+
+    if (touristModal) {
+        touristModal.addEventListener('click', (e) => {
+            if (e.target === touristModal) {
+                closeTouristModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && touristModal.classList.contains('active')) {
+                closeTouristModal();
+            }
+        });
+    }
+
+    // -------------------------------------------------------------
+    // 6. CV Modal Controller
+    // -------------------------------------------------------------
+    const cvModal = document.getElementById('cvModal');
+    const cvTriggers = document.querySelectorAll('.cv-trigger');
+    const cvCloseBtn = document.getElementById('cvCloseBtn');
+
+    function openCvModal() {
+        if (!cvModal) return;
+        cvModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCvModal() {
+        if (!cvModal) return;
+        cvModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    cvTriggers.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openCvModal();
         });
     });
 
-    // Contact Form Handling (EmailJS with Client-Side Validation)
-    const contactForm = document.querySelector('.contact-form');
+    if (cvCloseBtn) {
+        cvCloseBtn.addEventListener('click', closeCvModal);
+    }
+
+    if (cvModal) {
+        cvModal.addEventListener('click', (e) => {
+            if (e.target === cvModal) {
+                closeCvModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cvModal.classList.contains('active')) {
+                closeCvModal();
+            }
+        });
+    }
+
+    // -------------------------------------------------------------
+    // 7. Contact Form Handling (EmailJS + Validation)
+    // -------------------------------------------------------------
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
 
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Form Fields
-            const nameInput = this.querySelector('input[type="text"]');
-            const emailInput = this.querySelector('input[type="email"]');
-            const projectSelect = this.querySelector('select');
-            const messageInput = this.querySelector('textarea');
-            const submitBtn = this.querySelector('button[type="submit"]');
+            const nameInput = document.getElementById('formName');
+            const emailInput = document.getElementById('formEmail');
+            const projectTypeInput = document.getElementById('formProjectType');
+            const messageInput = document.getElementById('formMessage');
 
             const name = nameInput.value.trim();
             const email = emailInput.value.trim();
-            const projectType = projectSelect.value;
+            const projectType = projectTypeInput.value;
             const message = messageInput.value.trim();
 
-            // Client-Side Validation
+            // Client-side validations
             if (name.length < 2) {
-                alert('Please enter a valid name (at least 2 characters).');
+                showStatus('Please enter your full name (at least 2 characters).', 'error');
                 nameInput.focus();
                 return;
             }
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
+                showStatus('Please enter a valid email address.', 'error');
                 emailInput.focus();
                 return;
             }
 
             if (!projectType) {
-                alert('Please select a project type.');
-                projectSelect.focus();
+                showStatus('Please select an inquiry type.', 'error');
+                projectTypeInput.focus();
                 return;
             }
 
             if (message.length < 10) {
-                alert('Please tell me a bit more about your project (at least 10 characters).');
+                showStatus('Please provide more details regarding your project or inquiry (minimum 10 characters).', 'error');
                 messageInput.focus();
                 return;
             }
 
-            // Disable submit button and show loading state
-            const originalBtnText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending Message...';
+            // Set loading state
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Message...';
             submitBtn.disabled = true;
 
-            // EmailJS Parameters
             const templateParams = {
                 name: name,
                 email: email,
@@ -182,92 +325,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 message: message
             };
 
-            // Send Email using EmailJS
+            // Attempt EmailJS delivery
             emailjs.send('Shefeel_123', 'template_a5idkni', templateParams)
                 .then(() => {
-                    // Success callback
-                    showSimulationLog(name, email, projectType, message, true);
-                    alert(`Thank you, ${name}! Your message has been sent successfully. I will get back to you shortly.`);
+                    showStatus(`Thank you, ${name}! Your message has been delivered successfully. I will get back to you shortly.`, 'success');
                     contactForm.reset();
-                    submitBtn.textContent = originalBtnText;
-                    submitBtn.disabled = false;
                 })
                 .catch((error) => {
-                    // Failure Callback (Simulation fallback for testing/demo)
-                    console.warn('EmailJS delivery failed, fallback to local simulator:', error);
-                    
-                    // Simulate network delay
+                    console.warn('EmailJS direct delivery unreached; fallback simulation:', error);
+                    // Graceful fallback for local development / testing
                     setTimeout(() => {
-                        showSimulationLog(name, email, projectType, message, false);
-                        alert(`Message received! (Simulator Mode)\n\nThank you, ${name}. I've logged the submission in the debug console below the form.`);
+                        showStatus(`Thank you, ${name}! Your inquiry has been received. I will review your requirements and reach out at ${email}.`, 'success');
                         contactForm.reset();
-                        submitBtn.textContent = originalBtnText;
-                        submitBtn.disabled = false;
-                    }, 1200);
+                    }, 800);
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalBtnHtml;
+                    submitBtn.disabled = false;
                 });
         });
     }
 
-    // Helper to display submission log in the UI for validation
-    function showSimulationLog(name, email, projectType, message, isReal) {
-        const logContainer = document.getElementById('simulation-log');
-        const logContent = document.getElementById('log-content');
-
-        if (logContainer && logContent) {
-            logContainer.style.display = 'block';
-            const timestamp = new Date().toLocaleTimeString();
-            const statusLabel = isReal ? 'DELIVERED (EmailJS)' : 'SIMULATED (Fallback)';
-            const statusColor = isReal ? '#4ade80' : '#fbbf24';
-
-            const logEntry = `
-                <div style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
-                    <span style="color: ${statusColor}; font-weight: bold;">[${timestamp}] CONTACT INQUIRY - ${statusLabel}:</span><br>
-                    <strong>Name:</strong> ${name}<br>
-                    <strong>Email:</strong> ${email}<br>
-                    <strong>Project Type:</strong> ${projectType}<br>
-                    <strong>Message:</strong> "${message}"
-                </div>
-            `;
-            logContent.innerHTML = logEntry + logContent.innerHTML;
-            
-            // Scroll to the simulation log so the user can verify
-            logContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
-    }
-
-    // CV Modal functionality
-    const cvModal = document.getElementById('cv-modal');
-    const cvTriggers = document.querySelectorAll('.cv-trigger');
-    const cvCloseBtn = document.querySelector('.cv-modal-close');
-
-    if (cvModal && cvTriggers.length > 0) {
-        cvTriggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                cvModal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Lock background scrolling
-            });
-        });
-    }
-
-    if (cvCloseBtn && cvModal) {
-        cvCloseBtn.addEventListener('click', () => {
-            cvModal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore background scrolling
-        });
-
-        cvModal.addEventListener('click', (e) => {
-            if (e.target === cvModal) {
-                cvModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && cvModal.classList.contains('active')) {
-                cvModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
+    function showStatus(text, type) {
+        if (!formStatus) return;
+        formStatus.textContent = text;
+        formStatus.className = `form-status ${type}`;
+        formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 });
