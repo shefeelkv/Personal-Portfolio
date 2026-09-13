@@ -2158,6 +2158,116 @@ section {
 }
 
 /* ==========================================================================
+   FLOATING WHATSAPP CONTACT ACTION
+   ========================================================================== */
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 990;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 56px;
+  height: 56px;
+  border-radius: 50px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4), 0 2px 6px rgba(15, 23, 42, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  padding: 0;
+}
+
+.whatsapp-icon {
+  font-size: 1.85rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  color: #FFFFFF;
+}
+
+.whatsapp-label {
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  transition: max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, margin-right 0.35s ease;
+  pointer-events: none;
+}
+
+/* Hover expansion on desktop */
+@media (hover: hover) and (min-width: 769px) {
+  .whatsapp-float-btn:hover {
+    width: auto;
+    padding-right: 18px;
+    background-color: #20BA59;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 4px 10px rgba(15, 23, 42, 0.12);
+    color: #FFFFFF;
+  }
+
+  .whatsapp-float-btn:hover .whatsapp-label {
+    max-width: 90px;
+    opacity: 1;
+    margin-right: 4px;
+  }
+}
+
+.whatsapp-float-btn:focus-visible {
+  outline: 3px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+/* Gentle attention pulse */
+.whatsapp-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background-color: #25D366;
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+  animation: whatsappPulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-pulse {
+    animation: none;
+    display: none;
+  }
+  .whatsapp-float-btn {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1024px) {
@@ -2318,6 +2428,26 @@ section {
 
   .badge-bottom-left {
     display: none;
+  }
+
+  /* Mobile Floating WhatsApp Action */
+  .whatsapp-float-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+  }
+
+  .whatsapp-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+  }
+
+  .whatsapp-label {
+    display: none !important;
   }
 }
 
