@@ -233,6 +233,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!cvModal) return;
         cvModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        if (navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            if (mobileToggle) {
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                const icon = mobileToggle.querySelector('i');
+                if (icon) icon.className = 'fas fa-bars';
+            }
+        }
     }
 
     function closeCvModal() {

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/cv/:match*",
+      "destination": "/CV/:match*"
+    }
+  ]
+}
