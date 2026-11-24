@@ -964,9 +964,12 @@
                 <button class="cv-modal-close" id="cvCloseBtn" aria-label="Close CV Viewer">&times;</button>
             </div>
             <div class="cv-modal-body">
-                <iframe src="CV/Muhammed-Shefeel-CV.pdf" title="Muhammed Shefeel Resume" class="cv-iframe">
-                    <p>Your browser does not support inline PDF viewing. <a href="CV/Muhammed-Shefeel-CV.pdf" target="_blank">Click here to view or download the CV.</a></p>
-                </iframe>
+                <div class="cv-preview-wrapper">
+                    <picture>
+                        <source srcset="CV/Muhammed-Shefeel-CV-preview.webp" type="image/webp">
+                        <img src="CV/Muhammed-Shefeel-CV-preview.png" alt="Muhammed Shefeel - Professional CV Preview" class="cv-preview-img" loading="eager">
+                    </picture>
+                </div>
             </div>
             <div class="cv-modal-footer">
                 <a href="CV/Muhammed-Shefeel-CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
