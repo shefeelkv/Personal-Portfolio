@@ -233,6 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!cvModal) return;
         cvModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        const modalBody = cvModal.querySelector('.cv-modal-body');
+        if (modalBody) {
+            modalBody.scrollTop = 0;
+        }
         if (navMenu && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
             if (mobileToggle) {
@@ -252,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cvTriggers.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             openCvModal();
         });
     });
